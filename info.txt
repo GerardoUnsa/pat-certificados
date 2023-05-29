@@ -1,0 +1,40 @@
+Create your React app:
+- npx create-react-app my-app
+- cd my-app
+- npm start
+
+Bootstrap icons:
+-> https://www.kindacode.com/article/how-to-use-bootstrap-5-and-bootstrap-icons-in-react/
+
+Actualizar node y npm:
+-> sudo n latest
+
+Version de react-router-dom:
+-> v6 para adelante (gestionar posibles cambios)
+
+Convertir html a jsx
+-> https://magic.reactjs.net/htmltojsx.htm
+
+Reacthooks useEffect
+-> https://blog.logrocket.com/solve-react-useeffect-hook-infinite-loop-patterns/
+-> https://devtrium.com/posts/async-functions-useeffect
+
+Preparacion firebase:
+-> firebase login
+-> firebase init
+
+Despliegue:
+-> npm run build
+
+GitHub GerardoUNSA:
+-> git init
+-> git add .
+-> git commit -m "version 2.4"
+-> git branch -M main
+-> git remote add origin https://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@github.com/GerardoUnsa/pat-certificados.git
+-> git push -u origin main
+
+netlify:
+-> Site Panel = https://app.netlify.com/sites/funny-macaron-4e309f/deploys/63e18f697b68ca000a18d0b7
+-> Stackoverflow issue = https://stackoverflow.com/questions/58065603/netlify-renders-404-on-page-refresh-using-react-and-react-router
+-> Deploy tutorial = https://www.youtube.com/watch?v=-Euov0WKuV8
