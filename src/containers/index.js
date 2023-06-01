@@ -1,7 +1,8 @@
-import Home from './home'
-import Certificados from './certificados'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Home from './Home'
+import Certificados from './Certificados'
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 export {
     Home,
-    Certificados
+    Certificados,
 }
