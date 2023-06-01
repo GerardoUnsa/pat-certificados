@@ -5,10 +5,6 @@ import PizZipUtils from 'pizzip/utils/index.js'
 import { saveAs } from 'file-saver'
 import { useState } from 'react';
 
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
 
 export default function Certificados() {
 
@@ -119,62 +115,65 @@ export default function Certificados() {
 
   return (
     <div>
-    <Form noValidate validated={validated} onSubmit={handleSubmit}>
-      <Row className="mb-3">
-        <Form.Group as={Col} md="4" controlId="validationCustom01">
-          <Form.Label>First name</Form.Label>
-          <Form.Control
-            required
-            type="text"
-            placeholder="First name"
-            
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></link>
+      <form class="row g-3 needs-validation" novalidate validated={validated} onSubmit={handleSubmit}>
+        <div class="col-md-4">
+          <label for="validationCustom01" class="form-label">First name</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="validationCustom01" 
             value={propietario}
             onChange={e => setPropietario(e.target.value)}
-          />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustom02">
-          <Form.Label>RUC</Form.Label>
-          <Form.Control
             required
-            type="text"
-            placeholder="RUC"
-           
+            />
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustom02" class="form-label">Last name</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="validationCustom02" 
+            required
             value={ruc}
             onChange={e => setRuc(e.target.value)}
           />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-        </Form.Group>
-       
-      </Row>
-      <Col>
-      <Form.Label>Sistemas</Form.Label>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-4" id="col-sistemas">
+        <label  class="form-label">Sistemas</label>
       {sistemas.map((data,i) => {
           return (
-            <Row className='mt-3' key={i}>
-              <Col xs={4}>
-                <Form.Group controlId="formSistemas">
-                  
-                  <Form.Control 
+            <div class="row" key={i}>
+               <div class="col" xs={4}>
+                  <input
                   required
                   type="text" 
                   placeholder="01 Sistema" 
                   name="sistema"
                   value={data.sistema} 
                   onChange={event => handleChangeSistema(i,event)}/>
-                </Form.Group>
-              </Col>
-
-            </Row>
+              </div>
+            </div>
           )
         })
       }
-      </Col>
-      <Col className='pt-3 d-flex justify-content-between'>
-      <Button variant="warning" onClick={handleAddFields}>Add More</Button>
-      <Button variant="danger" onClick={handleRemoveFields}>Remove</Button>
-    </Col>
-      <Button type="submit">Submit form</Button>
-    </Form></div>
+      </div>
+      <div class="pt-3 d-flex justify-content-between"> 
+        <button class="warning"  onClick={handleAddFields}>Add More</button>
+        <button class="danger" onClick={handleRemoveFields}>Remove</button>
+      </div>
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Submit form</button>
+        </div>
+      </form>
+    
+    
+    </div>
   )
 }
