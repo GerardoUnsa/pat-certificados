@@ -3,13 +3,58 @@ import PizZip from 'pizzip'
 import { Document } from '../assets'
 import PizZipUtils from 'pizzip/utils/index.js'
 import { saveAs } from 'file-saver'
+import { useState } from 'react';
+
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 
 export default function Certificados() {
 
+    const [validated, setValidated] = useState(false);
+    const [propietario, setPropietario] = useState('');
+    const [ruc, setRuc] = useState('');
+
+    const [sistemas, setSistemas] = useState([
+      { sistema:''}
+    ]);
+
+    const handleChangeSistema = (index,event) => {
+      const values = [...sistemas];
+     
+      values[index].sistema=event.target.value
+  
+      setSistemas(values)
+    }
+
+    const handleAddFields = () => {
+      const values = [...sistemas];
+      values.push({sistema:''})
+      setSistemas(values);
+    };
+  
+    const handleRemoveFields = () => {
+      const values = [...sistemas];
+      if(values.length > 1)  values.pop();
+      setSistemas(values);
+    };
+
+      const handleSubmit = (event) => {
+        const form = event.currentTarget;
+        event.preventDefault();
+    
+        if (form.checkValidity() === false) {
+          event.stopPropagation();
+        } else {
+          generateDocument();
+        }
+        setValidated(true);
+      };
     function loadFile(url, callback) {
         PizZipUtils.getBinaryContent(url, callback);
       }
-      const generateDocument = () => {
+    const generateDocument = () => {
         loadFile(
           Document,
           function (error, content) {
@@ -22,15 +67,9 @@ export default function Certificados() {
               linebreaks: true,
             });
             doc.setData({
-              Propietario: 'John',
-              RUC: 'Doe',
-              sistemas: [
-                {sistema: "01 central de alarma contraincendioKK"},
-                {sistema: "01 Teclado Alfanumérico"},
-                {sistema: "12 Detectores de Humo Fotoeléctricos, Marca MGC"},
-                {sistema: "01 Estaciones manuales de Fuego Simple Acción"},
-                {sistema: "01 Sirena de 30 WATTS doble Tono para pared"},
-              ],
+              Propietario: propietario,
+              RUC: ruc,
+              sistemas: sistemas
             });
             try {
               // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
@@ -69,17 +108,73 @@ export default function Certificados() {
               mimeType:
                 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
             }); //Output the document using Data-URI
-            saveAs(out, 'output.docx');
+           saveAs(out, 'output.docx');
+            
+            
+          
           }
         );
       };
 
 
   return (
-    <div className="card">
-        <button onClick={generateDocument}>
-          Download
-        </button>
-      </div>
+    <div>
+    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+      <Row className="mb-3">
+        <Form.Group as={Col} md="4" controlId="validationCustom01">
+          <Form.Label>First name</Form.Label>
+          <Form.Control
+            required
+            type="text"
+            placeholder="First name"
+            
+            value={propietario}
+            onChange={e => setPropietario(e.target.value)}
+          />
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group as={Col} md="4" controlId="validationCustom02">
+          <Form.Label>RUC</Form.Label>
+          <Form.Control
+            required
+            type="text"
+            placeholder="RUC"
+           
+            value={ruc}
+            onChange={e => setRuc(e.target.value)}
+          />
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+        </Form.Group>
+       
+      </Row>
+      <Col>
+      <Form.Label>Sistemas</Form.Label>
+      {sistemas.map((data,i) => {
+          return (
+            <Row className='mt-3' key={i}>
+              <Col xs={4}>
+                <Form.Group controlId="formSistemas">
+                  
+                  <Form.Control 
+                  required
+                  type="text" 
+                  placeholder="01 Sistema" 
+                  name="sistema"
+                  value={data.sistema} 
+                  onChange={event => handleChangeSistema(i,event)}/>
+                </Form.Group>
+              </Col>
+
+            </Row>
+          )
+        })
+      }
+      </Col>
+      <Col className='pt-3 d-flex justify-content-between'>
+      <Button variant="warning" onClick={handleAddFields}>Add More</Button>
+      <Button variant="danger" onClick={handleRemoveFields}>Remove</Button>
+    </Col>
+      <Button type="submit">Submit form</Button>
+    </Form></div>
   )
 }
