@@ -1,5 +1,5 @@
-import Home from './home'
-import Certificados from './certificados'
+import Home from './Home'
+import Certificados from './Certificados'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 export {
