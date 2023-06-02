@@ -25,7 +25,22 @@ export default function Home() {
 
   return (
     <div className="container py-3">
-      <div className="row row-cols-1 row-cols-md-3 mb-3 text-center">
+      
+      <div className="col">
+        <form className='row'>
+          <div className="input-group">
+            <input
+              type="text"
+              className="searchBarInput form-control form-control-dark w-100"
+              //value={searchValue}
+              //onChange={(e) => setSearchValue(e.target.value)}
+              placeholder="Buscar certificado"
+            />
+          </div>
+        </form>
+      </div>
+
+      <div className="pt-3 row row-cols-1 row-cols-md-3 mb-3 text-center">
         {certificados.map((value, index) => (
           <div className="col" key={`${value.id}`}>
             <div className="card mb-4 rounded-3 shadow-sm">

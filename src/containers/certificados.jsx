@@ -153,16 +153,17 @@ export default function Certificados() {
           {sistemas.map((data,i) => {
             return (
               <div class="row" key={i}>
-              <div class="col" xs={4}>
-                <input
-                  required
-                  type="text" 
-                  placeholder="01 Sistema" 
-                  name="sistema"
-                  value={data.sistema} 
-                  onChange={event => handleChangeSistema(i,event)}
-                />
-              </div>
+                <div class="col" xs={4}>
+                  <input
+                    className="form-control"                    
+                    type="text" 
+                    placeholder="01 Sistema" 
+                    name="sistema"
+                    value={data.sistema} 
+                    onChange={event => handleChangeSistema(i,event)}
+                    required
+                  />
+                </div>
             </div>
             )
           })}
