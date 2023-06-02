@@ -171,10 +171,10 @@ export default function Certificados() {
         <div className="container">
           <div className="row pt-3">
             <div className="col">
-              <button onClick={handleAddFields} className="btn btn-info w-100">Add More</button>
+              <button onClick={handleAddFields} type="button" className="btn btn-info w-100">Add More</button>
             </div>
             <div className="col">
-              <button onClick={handleRemoveFields} className="btn btn-danger w-100">Remove</button>
+              <button onClick={handleRemoveFields} type="button" className="btn btn-danger w-100">Remove</button>
             </div>
           </div>
 
