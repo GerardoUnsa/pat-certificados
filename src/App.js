@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Layout } from './hocs'
 
-import { Home, Certificados } from './containers'
+import { Home, Certificados,CertificadPuestaTierra } from './containers'
 
 function App() {
   return (
@@ -11,6 +11,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/admin/certificados' element={<Certificados/>}/>
+          <Route path='/admin/certificadoPuestaTierra' element={<CertificadPuestaTierra/>}/>
         </Routes>
       </Layout>
     </Router>

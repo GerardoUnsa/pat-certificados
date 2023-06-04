@@ -18,6 +18,7 @@ export default function Navbar(props) {
                         <div className="nav-link px-2 link-danger dropdown-toggle d-block" data-bs-toggle="dropdown" aria-expanded="false">Admin</div>
                         <ul className="dropdown-menu text-small shadow">
                             <li><a className="dropdown-item" href="/admin/certificados">Certificados</a></li>
+                            <li><a className="dropdown-item" href="/admin/certificadoPuestaTierra">Certificado Puesta Tierra</a></li>
                             <li><a className="dropdown-item" href="/admin/usuarios">Usuarios</a></li>
                         </ul>
                     </li>
