@@ -1,6 +1,6 @@
-import Home from './home'
-import Certificados from './certificados'
-import CertificadPuestaTierra from './certificadPuestaTierra'
+import Home from './Home'
+import Certificados from './Certificados'
+import CertificadPuestaTierra from './CertificadPuestaTierra'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 export {

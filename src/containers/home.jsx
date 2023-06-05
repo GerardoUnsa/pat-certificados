@@ -1,46 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import {db} from '../firebase'
 
-export default function Home() {
-  const [certificados, setCertificados] = useState([])
-  const [error, setError] = useState(null)
-
-  useEffect(
-    () => {
-      const manualF = db.collection('certificados').onSnapshot(
-        snapshot => {
-          setCertificados(snapshot.docs.map(d => ({id: d.id, ...d.data()}) ))
-        },
-        err => {
-          if (err !== null) {
-            console.log(err, 'home')
-            setError(true)
-          }
-        }
-      )
-      return () => manualF()
-    },
-    [setCertificados]
-  )
-
+const HomeCertificados = ({ certificados }) => {
   return (
-    <div className="container py-3">
-      
-      <div className="col">
-        <form className='row'>
-          <div className="input-group">
-            <input
-              type="text"
-              className="searchBarInput form-control form-control-dark w-100"
-              //value={searchValue}
-              //onChange={(e) => setSearchValue(e.target.value)}
-              placeholder="Buscar certificado"
-            />
-          </div>
-        </form>
-      </div>
-
-      <div className="pt-3 row row-cols-1 row-cols-md-3 mb-3 text-center">
+    <div className="pt-3 row row-cols-1 row-cols-md-3 mb-3 text-center">
         {certificados.map((value, index) => (
           <div className="col" key={`${value.id}`}>
             <div className="card mb-4 rounded-3 shadow-sm">
@@ -58,6 +21,68 @@ export default function Home() {
           </div>
         ))}
       </div>
+  )
+}
+
+export default function Home() {
+  const [searchValue, setSearchValue] = useState("")
+  const [certificados, setCertificados] = useState([])
+  const [certificadosFiltrados, setCertificadosFiltrados] = useState([])
+  const [error, setError] = useState(null)
+
+  const filtrarCertificados = () => {
+    if (searchValue === "") {
+      setCertificadosFiltrados(certificados)
+      return ;
+    }
+    const certFiltrados = certificados.filter((certificado) =>
+      certificado.Name.toLowerCase().includes(searchValue.toLowerCase())
+    )
+    setCertificadosFiltrados(certFiltrados)
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    filtrarCertificados()
+  }
+
+  useEffect(
+    () => {
+      const manualF = db.collection('certificados').onSnapshot(
+        snapshot => {
+          setCertificados(snapshot.docs.map(d => ({id: d.id, ...d.data()}) ))
+          setCertificadosFiltrados(snapshot.docs.map(d => ({id: d.id, ...d.data()}) ))
+        },
+        err => {
+          if (err !== null) {
+            console.log(err, 'home')
+            setError(true)
+          }
+        }
+      )
+      return () => manualF()
+    },
+    [setCertificados]
+  )
+
+  return (
+    <div className="container py-3">
+      
+      <div className="col">
+        <form className='row' onSubmit={handleSubmit}>
+          <div className="input-group">
+            <input
+              type="text"
+              className="searchBarInput form-control form-control-dark w-100 rounded-pill"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              placeholder="Buscar certificado"
+            />
+          </div>
+        </form>
+      </div>
+      <HomeCertificados certificados={certificadosFiltrados} />
+      
     </div>
   )
 }

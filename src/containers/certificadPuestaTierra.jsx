@@ -135,7 +135,7 @@ export default function CertificadPuestaTierra() {
     
           <form className='row g-3 needs-validation' validated={validated} onSubmit={handleSubmit}>
     
-            <div className="mb-3">
+            <div className="mb-3 px-0">
               <label htmlFor="validationCustom01" className="form-label">Marca</label>
               <input 
                 type="text"
@@ -147,7 +147,7 @@ export default function CertificadPuestaTierra() {
               />
             </div>
     
-            <div className="mb-3">
+            <div className="mb-3 px-0">
               <label htmlFor="validationCustom02" className="form-label">Modelo</label>
               <input 
                 type="text"
@@ -158,7 +158,8 @@ export default function CertificadPuestaTierra() {
                 required
               />
             </div>
-            <div className="mb-3">
+
+            <div className="mb-3 px-0">
               <label htmlFor="validationCustom02" className="form-label">Categoria</label>
               <input 
                 type="text"
@@ -168,81 +169,78 @@ export default function CertificadPuestaTierra() {
                 onChange={e => setCategoria(e.target.value)}
                 required
               />
-            </div>
-    
-            <div class="col-md-4" id="col-sistemas">
-              <label  class="form-label">Tabla 1 </label>
-              {tabla1.map((data,i) => {
-                return (
-                  <div class="row" key={i}>
-                    <div class="col" xs={4}>
-                     <label htmlFor="Spat" className="form-label">Sistema</label>
-                      <input
-                        className="form-control"                    
-                        type="text" 
-                        id="Spat"
-                        placeholder="Spat" 
-                        name="spat"
-                        value={tabla1.spat} 
-                        onChange={event => handleChangeTable1(i,event)}
-                        required
-                      />
-                       <input
-                        className="form-control"                    
-                        type="text" 
-                        placeholder="medicion" 
-                        name="medicion"
-                        value={tabla1.medicion} 
-                        onChange={event => handleChangeTable1(i,event)}
-                        required
-                      />
-                      
-                       <input
-                        className="form-control"                    
-                        type="time" 
-                        placeholder="hora" 
-                        name="hora"
-                        value={tabla1.hora} 
-                        onChange={event => handleChangeTable1(i,event)}
-                        required
-                      />
-                      <input
-                        className="form-control"                    
-                        type="text" 
-                        placeholder="Ubicacion" 
-                        name="ubicacion"
-                        value={tabla1.ubicacion} 
-                        onChange={event => handleChangeTable1(i,event)}
-                        required
-                      />
-                       <input
-                        className="form-control"                    
-                        type="text" 
-                        placeholder="Observaciones" 
-                        name="observacion"
-                        value={tabla1.observacion} 
-                        onChange={event => handleChangeTable1(i,event)}
-                        required
-                      />
-                    </div>
-                </div>
-                )
-              })}
-            </div>
+            </div>            
             
             <div className="container">
-              <div className="row pt-3">
-                <div className="col">
-                  <button onClick={handleAddFields} type="button" className="btn btn-info w-100">Add More</button>
+              <div className="row py-3 border">
+                <div class="col-md-4" id="col-sistemas">
+                  <label  class="form-label">Tabla 1 </label>
+                  {tabla1.map((data,i) => {
+                    return (
+                      <div class="row" key={i}>
+                        <div class="col pt-3">
+                          <label htmlFor="Spat" className="form-label">Sistema</label>
+                          <input
+                            className="form-control"                    
+                            type="text" 
+                            id="Spat"
+                            placeholder="Spat" 
+                            name="spat"
+                            value={tabla1.spat} 
+                            onChange={event => handleChangeTable1(i,event)}
+                            required
+                          />
+                          <input
+                            className="form-control"                    
+                            type="text" 
+                            placeholder="medicion" 
+                            name="medicion"
+                            value={tabla1.medicion} 
+                            onChange={event => handleChangeTable1(i,event)}
+                            required
+                          />                          
+                          <input
+                            className="form-control"                    
+                            type="time" 
+                            placeholder="hora" 
+                            name="hora"
+                            value={tabla1.hora} 
+                            onChange={event => handleChangeTable1(i,event)}
+                            required
+                          />
+                          <input
+                            className="form-control"                    
+                            type="text" 
+                            placeholder="Ubicacion" 
+                            name="ubicacion"
+                            value={tabla1.ubicacion} 
+                            onChange={event => handleChangeTable1(i,event)}
+                            required
+                          />
+                          <input
+                            className="form-control"                    
+                            type="text" 
+                            placeholder="Observaciones" 
+                            name="observacion"
+                            value={tabla1.observacion} 
+                            onChange={event => handleChangeTable1(i,event)}
+                            required
+                          />
+                        </div>
+                    </div>
+                    )
+                  })}
                 </div>
+
                 <div className="col">
-                  <button onClick={handleRemoveFields} type="button" className="btn btn-danger w-100">Remove</button>
+                  <button onClick={handleAddFields} type="button" className="btn btn-info w-100">Agregar campo</button>
+                  <button onClick={handleRemoveFields} type="button" className="btn btn-danger w-100">Eliminar campo</button>
                 </div>
               </div>
     
               <div className="row pt-3">
-                <div className="col">
-                  <button class="btn btn-primary w-100" type="submit">Submit form</button>
+                <div className="col px-0">
+                  <button class="btn btn-primary w-100" type="submit">Generar documento</button>
                 </div>
               </div>     
             </div>

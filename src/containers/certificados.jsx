@@ -124,7 +124,7 @@ export default function Certificados() {
 
       <form className='row g-3 needs-validation' validated={validated} onSubmit={handleSubmit}>
 
-        <div className="mb-3">
+        <div className="mb-3 px-0">
           <label htmlFor="validationCustom01" className="form-label">Nombre</label>
           <input 
             type="text"
@@ -136,7 +136,7 @@ export default function Certificados() {
           />
         </div>
 
-        <div className="mb-3">
+        <div className="mb-3 px-0">
           <label htmlFor="validationCustom02" className="form-label">RUC</label>
           <input 
             type="text"
@@ -146,42 +146,41 @@ export default function Certificados() {
             onChange={e => setRuc(e.target.value)}
             required
           />
-        </div>
-
-        <div class="col-md-4" id="col-sistemas">
-          <label  class="form-label">Sistemas</label>
-          {sistemas.map((data,i) => {
-            return (
-              <div class="row" key={i}>
-                <div class="col" xs={4}>
-                  <input
-                    className="form-control"                    
-                    type="text" 
-                    placeholder="01 Sistema" 
-                    name="sistema"
-                    value={data.sistema} 
-                    onChange={event => handleChangeSistema(i,event)}
-                    required
-                  />
-                </div>
-            </div>
-            )
-          })}
-        </div>
+        </div>        
         
         <div className="container">
-          <div className="row pt-3">
-            <div className="col">
-              <button onClick={handleAddFields} type="button" className="btn btn-info w-100">Add More</button>
+          <div className="row py-3 border">
+
+            <div className="col" id="col-sistemas">
+              <label  class="form-label">Sistemas</label>
+              {sistemas.map((data,i) => {
+                return (
+                  <div className="row" key={i}>
+                    <div className="col">
+                      <input
+                        className="form-control"                    
+                        type="text" 
+                        placeholder="01 Sistema" 
+                        name="sistema"
+                        value={data.sistema} 
+                        onChange={event => handleChangeSistema(i,event)}
+                        required
+                      />
+                    </div>
+                </div>
+                )
+              })}
             </div>
+
             <div className="col">
-              <button onClick={handleRemoveFields} type="button" className="btn btn-danger w-100">Remove</button>
+              <button onClick={handleAddFields} type="button" className="btn btn-info w-100">Agregar campo</button>
+              <button onClick={handleRemoveFields} type="button" className="btn btn-danger w-100">Eliminar campo</button>
             </div>
           </div>
 
           <div className="row pt-3">
-            <div className="col">
-              <button class="btn btn-primary w-100" type="submit">Submit form</button>
+            <div className="col px-0">
+              <button class="btn btn-primary w-100" type="submit">Generar Documento</button>
             </div>
           </div>     
         </div>
