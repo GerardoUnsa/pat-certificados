@@ -11,10 +11,20 @@ export default function Certificados() {
     const [validated, setValidated] = useState(false)
     const [propietario, setPropietario] = useState('')
     const [ruc, setRuc] = useState('')
+    const [direccion, setDireccion] = useState('')
+    const [fecha, setFecha] = useState('')
 
     const [sistemas, setSistemas] = useState([
       { sistema: ''}
     ])
+
+    const [zonas, setZonas] = useState([
+      { zona: '',
+        detector : ''
+      }
+    ])
+    var cantZonas =''
+    var cantZonas2 = ''
 
     const handleChangeSistema = (index,event) => {
       const values = [...sistemas]
@@ -22,6 +32,13 @@ export default function Certificados() {
       values[index].sistema=event.target.value
   
       setSistemas(values)
+    }
+
+    const handleChangeZonas= (index,event) => {
+      const values = [...zonas]
+      const updatedValue = event.target.name;
+      values[index][updatedValue] = event.target.value;
+      setZonas(values)
     }
 
     const handleAddFields = () => {
@@ -35,7 +52,14 @@ export default function Certificados() {
       if(values.length > 1)  values.pop()
       setSistemas(values)
     }
-    
+    const handleAddFieldsZone = () => {
+      const values = [...zonas]
+      values.push({
+        sistema:'',
+        detector: 0,
+      })
+      setZonas(values)
+    }
     const handleSubmit = (event) => {
       const form = event.currentTarget
       event.preventDefault()
@@ -43,16 +67,42 @@ export default function Certificados() {
       if (form.checkValidity() === false) {
         event.stopPropagation()
       } else {
+        var aux = 0
+        for (let i = 0; i<zonas.length; i++){
+         zonas[i].zona = "Zona " + (i +1) + ": " + zonas[i].zona
+         aux += Number(zonas[i].detector)
+         if ( Number(zonas[i].detector) > 1){
+           zonas[i].detector = zonas[i].detector + " detectores"
+         } else {
+          zonas[i].detector = zonas[i].detector + " detector"
+         }
+        
+        
+        }
+        if ( aux > 1){
+          cantZonas = aux + " zonas"
+          cantZonas2 = aux + " zonas de operacion"
+        } else{
+          cantZonas = aux + " zona"
+          cantZonas2 = aux + " zona de operacion"
+        }
+        
         generateDocument()
       }
 
       setValidated(true)
+    }
+    const handleRemoveFieldsZone = () => {
+      const values = [...zonas]
+      if(values.length > 1)  values.pop()
+      setZonas(values)
     }
 
     function loadFile(url, callback) {
       PizZipUtils.getBinaryContent(url, callback)
     }
     
+   
     const generateDocument = () => {
       loadFile(
         Document,
@@ -65,11 +115,17 @@ export default function Certificados() {
             paragraphLoop: true,
             linebreaks: true,
           })
-
+          
           doc.setData({
             Propietario: propietario,
             RUC: ruc,
-            sistemas: sistemas
+            Ubicacion: direccion,
+            Fecha: fecha,
+            sistemas: sistemas,
+            zonas: zonas,
+            cantZonas: cantZonas,
+            cantZonas2 : cantZonas2,
+
           })
           
           try {
@@ -125,7 +181,7 @@ export default function Certificados() {
       <form className='row g-3 needs-validation' validated={validated} onSubmit={handleSubmit}>
 
         <div className="mb-3 px-0">
-          <label htmlFor="validationCustom01" className="form-label">Nombre</label>
+          <label htmlFor="validationCustom01" className="form-label">Propietario</label>
           <input 
             type="text"
             className="form-control"
@@ -146,18 +202,42 @@ export default function Certificados() {
             onChange={e => setRuc(e.target.value)}
             required
           />
+        </div>
+        <div className="mb-3 px-0">
+          <label htmlFor="validationCustom03" className="form-label">Direccion</label>
+          <input 
+            type="text"
+            className="form-control"
+            id="validationCustom03"
+            value={direccion}
+            onChange={e => setDireccion(e.target.value)}
+            required
+          />
+        </div>
+        <div className="mb-3 px-0">
+          <label htmlFor="validationCustom04" className="form-label">Fecha</label>
+          <input  
+            type="text"
+            className="form-control"
+            id="validationCustom04"
+            value={fecha}
+            onChange={e => setFecha(e.target.value)}
+            required
+          />
         </div>        
         
         <div className="container">
           <div className="row py-3 border">
 
             <div className="col" id="col-sistemas">
-              <label  class="form-label">Sistemas</label>
+              <label  class="form-label">Sistema de detección de Incendios </label>
               {sistemas.map((data,i) => {
                 return (
                   <div className="row" key={i}>
                     <div className="col">
+                    <label htmlFor="sistemaInput" className="form-label">Sistema  {i +1}</label>
                       <input
+                        id = "sistemaInput"
                         className="form-control"                    
                         type="text" 
                         placeholder="01 Sistema" 
@@ -177,6 +257,51 @@ export default function Certificados() {
               <button onClick={handleRemoveFields} type="button" className="btn btn-danger w-100">Eliminar campo</button>
             </div>
           </div>
+          <div className="row py-3 border">
+
+            <div className="col" id="col-zonificacion">
+              <label  class="form-label">Zonificacion de detección de Incendios  </label>
+              {zonas.map((data,i) => {
+                return (
+                  <div className="row" key={i}>
+                    <div className="col">
+                     <label htmlFor="zonainput" className="form-label">Zona {i +1}</label>
+                      <input
+                        id= "zonainput"
+                        className="form-control"                    
+                        type="text" 
+                        placeholder="Sala de espera" 
+                        name="zona"
+                        value={data.zona} 
+                        onChange={event => handleChangeZonas(i,event)}
+                        required
+                      />
+                    </div>
+                    <div className="col">
+                      <label htmlFor="detectorinput" className="form-label">N° Detectores</label>
+                      <input
+                        id = "detectorinput"
+                        className="form-control"                    
+                        type="number" 
+                        placeholder="01" 
+                        name="detector"
+                        value={data.detector} 
+                        onChange={event => handleChangeZonas(i,event)}
+                        required
+                      />
+                    </div>
+                </div>
+                )
+              })}
+            </div>
+
+            <div className="col">
+              <button onClick={handleAddFieldsZone} type="button" className="btn btn-info w-100">Agregar campo</button>
+              <button onClick={handleRemoveFieldsZone} type="button" className="btn btn-danger w-100">Eliminar campo</button>
+            </div>
+          </div>
+
+          
 
           <div className="row pt-3">
             <div className="col px-0">
