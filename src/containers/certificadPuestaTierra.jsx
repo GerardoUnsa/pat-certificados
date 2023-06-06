@@ -173,12 +173,12 @@ export default function CertificadPuestaTierra() {
             
             <div className="container">
               <div className="row py-3 border">
-                <div class="col-md-4" id="col-sistemas">
-                  <label  class="form-label">Tabla 1 </label>
+                <div className="col-md-4" id="col-sistemas">
+                  <label  className="form-label">Tabla 1 </label>
                   {tabla1.map((data,i) => {
                     return (
-                      <div class="row" key={i}>
-                        <div class="col pt-3">
+                      <div className="row" key={i}>
+                        <div className="col pt-3">
                           <label htmlFor="Spat" className="form-label">Sistema</label>
                           <input
                             className="form-control"                    
@@ -240,7 +240,7 @@ export default function CertificadPuestaTierra() {
     
               <div className="row pt-3">
                 <div className="col px-0">
-                  <button class="btn btn-primary w-100" type="submit">Generar documento</button>
+                  <button className="btn btn-primary w-100" type="submit">Generar documento</button>
                 </div>
               </div>     
             </div>

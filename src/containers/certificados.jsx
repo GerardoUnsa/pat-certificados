@@ -230,7 +230,7 @@ export default function Certificados() {
           <div className="row py-3 border">
 
             <div className="col" id="col-sistemas">
-              <label  class="form-label">Sistema de detección de Incendios </label>
+              <label  className="form-label">Sistema de detección de Incendios </label>
               {sistemas.map((data,i) => {
                 return (
                   <div className="row" key={i}>
@@ -260,7 +260,7 @@ export default function Certificados() {
           <div className="row py-3 border">
 
             <div className="col" id="col-zonificacion">
-              <label  class="form-label">Zonificacion de detección de Incendios  </label>
+              <label  className="form-label">Zonificacion de detección de Incendios  </label>
               {zonas.map((data,i) => {
                 return (
                   <div className="row" key={i}>
@@ -305,7 +305,7 @@ export default function Certificados() {
 
           <div className="row pt-3">
             <div className="col px-0">
-              <button class="btn btn-primary w-100" type="submit">Generar Documento</button>
+              <button className="btn btn-primary w-100" type="submit">Generar Documento</button>
             </div>
           </div>     
         </div>

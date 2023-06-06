@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import {db} from '../firebase'
+import { db } from '../firebase'
 
 const HomeCertificados = ({ certificados }) => {
   return (
-    <div className="pt-3 row row-cols-1 row-cols-md-3 mb-3 text-center">
+    <div className="pt-3 row row-cols-1 row-cols-md-4 mb-3 text-center">
         {certificados.map((value, index) => (
           <div className="col" key={`${value.id}`}>
             <div className="card mb-4 rounded-3 shadow-sm">
