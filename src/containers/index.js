@@ -1,13 +1,17 @@
 import Home from './Home'
-import Certificados from './Certificados'
-import CertificadPuestaTierra from './CertificadPuestaTierra'
-import CrudCertificado from './CrudCertificado'
-import CrudCertificadPuestaTierra from './CrudCertificadPuestaTierra'
+import Login from './Login'
+import Signup from './Signup'
+import Post_Certificado from './Post_Certificado' // Crear Certificados
+import Post_CPT from './Post_CPT' // Crear Certificados Puesta a Tierra
+import Manage_Certificados from './Manage_Certificados' // Gestionar Certificados
+import Manage_CPT from './Manage_CPT' // Gestionar Certificados Puesta a Tierra
 
 export {
     Home,
-    Certificados,
-    CertificadPuestaTierra,
-    CrudCertificado,
-    CrudCertificadPuestaTierra,
+    Login,
+    Signup,
+    Post_Certificado,
+    Post_CPT,
+    Manage_Certificados,
+    Manage_CPT,
 }

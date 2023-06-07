@@ -2,7 +2,15 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Layout } from './hocs'
 
-import { Home, Certificados, CertificadPuestaTierra, CrudCertificado, CrudCertificadPuestaTierra } from './containers'
+import { 
+  Home,
+  Login,
+  Signup,
+  Post_Certificado,
+  Post_CPT,
+  Manage_Certificados,
+  Manage_CPT
+} from './containers'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
@@ -13,10 +21,12 @@ function App() {
       <Layout>
         <Routes>
           <Route path='/' element={<Home/>}/>
-          <Route path='/admin/certificados' element={<Certificados/>}/>
-          <Route path='/admin/certificadoPuestaTierra' element={<CertificadPuestaTierra/>}/>
-          <Route path='/admin/crud/certificados' element={<CrudCertificado/>}/>
-          <Route path='/admin/crud/certificadoPuestaTierra' element={<CrudCertificadPuestaTierra/>}/>          
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/signup' element={<Signup/>}/>
+          <Route path='/admin/post_certificado' element={<Post_Certificado/>}/>
+          <Route path='/admin/post_cpt' element={<Post_CPT/>}/>
+          <Route path='/admin/manage/certificados' element={<Manage_Certificados/>}/>
+          <Route path='/admin/manage/cpt' element={<Manage_CPT/>}/>          
         </Routes>
       </Layout>
     </Router>

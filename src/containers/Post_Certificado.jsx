@@ -6,30 +6,30 @@ import { saveAs } from 'file-saver'
 import { useState } from 'react'
 
 
-export default function Certificados() {
+export default function Post_Certificado() {
 
     const [validated, setValidated] = useState(false)
     const [propietario, setPropietario] = useState('')
     const [ruc, setRuc] = useState('')
     const [direccion, setDireccion] = useState('')
     const [fecha, setFecha] = useState('')
+    var cantZonas = ''
+    var cantZonas2 = ''
 
     const [sistemas, setSistemas] = useState([
       { sistema: ''}
     ])
 
     const [zonas, setZonas] = useState([
-      { zona: '',
+      { 
+        zona: '',
         detector : ''
       }
-    ])
-    var cantZonas =''
-    var cantZonas2 = ''
+    ])    
 
     const handleChangeSistema = (index,event) => {
       const values = [...sistemas]
-     
-      values[index].sistema=event.target.value
+      values[index].sistema = event.target.value
   
       setSistemas(values)
     }
@@ -52,6 +52,7 @@ export default function Certificados() {
       if(values.length > 1)  values.pop()
       setSistemas(values)
     }
+
     const handleAddFieldsZone = () => {
       const values = [...zonas]
       values.push({
@@ -60,28 +61,30 @@ export default function Certificados() {
       })
       setZonas(values)
     }
+
     const handleSubmit = (event) => {
       const form = event.currentTarget
       event.preventDefault()
       
       if (form.checkValidity() === false) {
         event.stopPropagation()
+
       } else {
         var aux = 0
         for (let i = 0; i<zonas.length; i++){
-         zonas[i].zona = "Zona " + (i +1) + ": " + zonas[i].zona
-         aux += Number(zonas[i].detector)
-         if ( Number(zonas[i].detector) > 1){
-           zonas[i].detector = zonas[i].detector + " detectores"
-         } else {
-          zonas[i].detector = zonas[i].detector + " detector"
-         }
-        
-        
+          zonas[i].zona = "Zona " + (i +1) + ": " + zonas[i].zona
+          aux += Number(zonas[i].detector)
+          if ( Number(zonas[i].detector) > 1){
+            zonas[i].detector = zonas[i].detector + " detectores"
+          } else {
+            zonas[i].detector = zonas[i].detector + " detector"
+          }              
         }
+        
         if ( aux > 1){
           cantZonas = aux + " zonas"
           cantZonas2 = aux + " zonas de operacion"
+          
         } else{
           cantZonas = aux + " zona"
           cantZonas2 = aux + " zona de operacion"
@@ -92,6 +95,7 @@ export default function Certificados() {
 
       setValidated(true)
     }
+
     const handleRemoveFieldsZone = () => {
       const values = [...zonas]
       if(values.length > 1)  values.pop()
@@ -257,6 +261,7 @@ export default function Certificados() {
               <button onClick={handleRemoveFields} type="button" className="btn btn-danger w-100">Eliminar campo</button>
             </div>
           </div>
+          
           <div className="row py-3 border">
 
             <div className="col" id="col-zonificacion">
@@ -307,7 +312,7 @@ export default function Certificados() {
             <div className="col px-0">
               <button className="btn btn-primary w-100" type="submit">Generar Documento</button>
             </div>
-          </div>     
+          </div>
         </div>
 
       </form>

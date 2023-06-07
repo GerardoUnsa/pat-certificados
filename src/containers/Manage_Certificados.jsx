@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { CrudCertificadosTable } from "./tables"
 import { db } from '../firebase'
 
-export default function CrudCertificadPuestaTierra() {
+export default function Manage_Certificados() {
     const [searchValue, setSearchValue] = useState("")
     const [certificados, setCertificados] = useState([])
     const [certificadosFiltrados, setCertificadosFiltrados] = useState([])
@@ -45,11 +45,15 @@ export default function CrudCertificadPuestaTierra() {
 
     return (
         <div className="container py-3">
-            <div className="row row-cols-1 text-center">
+            <div className="row row-cols-1">
+              <h1 className="px-0">Gestionar Certificados</h1>
+            </div>
+            
+            <div className="row text-center border p-3">
 
                 <div className="col-md-4">          
                     <div className="d-grid">
-                        <a className="btn btn-warning" href="/admin/certificadoPuestaTierra">Crear Certificado</a>
+                        <a className="btn btn-warning" href="/admin/post_certificado">Crear Certificado</a>
                     </div>
                 </div>                
 

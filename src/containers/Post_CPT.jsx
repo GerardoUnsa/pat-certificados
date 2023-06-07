@@ -6,7 +6,7 @@ import { saveAs } from 'file-saver'
 import { useState } from 'react'
 
 
-export default function CertificadPuestaTierra() {
+export default function Post_CPT() {
     const [validated, setValidated] = useState(false)
     const [marca, setMarca] = useState('')
     const [modelo, setModelo] = useState('')

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 export default function Navbar(props) {
     //const { user, admin } = props
@@ -19,9 +19,9 @@ export default function Navbar(props) {
                     <li className="flex-shrink-0 dropdown" style={{cursor: 'pointer'}}>
                         <div className="nav-link px-2 link-danger dropdown-toggle d-block" data-bs-toggle="dropdown" aria-expanded="false">Admin</div>
                         <ul className="dropdown-menu text-small shadow">
-                            <li><a className="dropdown-item" href="/admin/crud/certificados">Certificados</a></li>
-                            <li><a className="dropdown-item" href="/admin/crud/certificadoPuestaTierra">Certificado Puesta Tierra</a></li>
-                            <li><a className="dropdown-item" href="/admin/usuarios">Usuarios</a></li>
+                            <li><a className="dropdown-item" href="/admin/manage/certificados">Certificados</a></li>
+                            <li><a className="dropdown-item" href="/admin/manage/cpt">Certificado Puesta Tierra</a></li>
+                            <li><a className="dropdown-item" href="/admin/users">Usuarios</a></li>
                         </ul>
                     </li>
                     :                    
@@ -36,14 +36,14 @@ export default function Navbar(props) {
                             </div>
                             <ul className="dropdown-menu text-small shadow">
                                 <li><div className="dropdown-item">{user.email}</div></li>
-                                {user ? <li><a className="dropdown-item" href="/registro">Registrar Usuario</a></li> : <li></li>}
+                                {user ? <li><a className="dropdown-item" href="/signup">Registrar Usuario</a></li> : <li></li>}
                                 <li><hr className="dropdown-divider" /></li>
-                                <li><a className="dropdown-item" href="/">Sign out</a></li>
+                                <li><a className="dropdown-item" href="/">Cerrar Sesion</a></li>
                             </ul>
                         </div>
                         : 
                         <a href="/login" className="nav-link px-2 text-white">
-                            <button type="button" className="btn btn-warning me-2">Login</button>
+                            <button type="button" className="btn btn-warning me-2">Inicio de Sesion</button>
                         </a>
                         }
                 </div>
