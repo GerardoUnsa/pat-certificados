@@ -4,9 +4,11 @@ import { Navbar, Footer } from '../components'
 const Layout = (props) => {
 
     return (
-        <div>
+        <div className='customizedContainer'>
             <Navbar />
-            {props.children}
+            <div className='containerContent'>
+                {props.children}
+            </div>
             <Footer />
         </div>
     )
