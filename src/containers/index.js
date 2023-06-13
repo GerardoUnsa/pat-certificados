@@ -5,7 +5,7 @@ import Post_Certificado from './Post_Certificado' // Crear Certificados
 import Post_CPT from './Post_CPT' // Crear Certificados Puesta a Tierra
 import Manage_Certificados from './Manage_Certificados' // Gestionar Certificados
 import Manage_CPT from './Manage_CPT' // Gestionar Certificados Puesta a Tierra
-
+import Post_Certificado_Iluminacion from './Post_CO'
 export {
     Home,
     Login,
@@ -14,4 +14,5 @@ export {
     Post_CPT,
     Manage_Certificados,
     Manage_CPT,
+    Post_Certificado_Iluminacion,
 }

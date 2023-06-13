@@ -9,7 +9,8 @@ import {
   Post_Certificado,
   Post_CPT,
   Manage_Certificados,
-  Manage_CPT
+  Manage_CPT,
+  Post_Certificado_Iluminacion
 } from './containers'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -25,8 +26,10 @@ function App() {
           <Route path='/signup' element={<Signup/>}/>
           <Route path='/admin/post_certificado' element={<Post_Certificado/>}/>
           <Route path='/admin/post_cpt' element={<Post_CPT/>}/>
+          <Route path='/admin/post_cilum' element={<Post_Certificado_Iluminacion/>}/>
           <Route path='/admin/manage/certificados' element={<Manage_Certificados/>}/>
-          <Route path='/admin/manage/cpt' element={<Manage_CPT/>}/>          
+          <Route path='/admin/manage/cpt' element={<Manage_CPT/>}/>
+                    
         </Routes>
       </Layout>
     </Router>
