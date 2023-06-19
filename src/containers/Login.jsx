@@ -1,11 +1,12 @@
 import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase'
 
 export default function Login() {
+    const navigate = useNavigate()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [validated, setValidated] = useState(false)
 
     const handleSubmit = (e) => {
         const form = e.currentTarget
@@ -13,16 +14,16 @@ export default function Login() {
 
         if (form.checkValidity() === true) {
             signInWithEmailAndPassword(auth, email, password)
+            navigate('/')
         } else {
             e.stopPropagation()
         }
-  
-        setValidated(true)
+
       }
 
     return (
         <div className="container py-3">
-            <form className='row g-3 needs-validation' validated={validated} onSubmit={handleSubmit}>
+            <form className='row g-3 needs-validation' onSubmit={handleSubmit}>
                 <h1 className="px-0">Inicio de Sesion</h1>
                 <div className="mb-3 px-0">
                     <label htmlFor="validationCustom01" className="form-label">Email</label>

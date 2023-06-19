@@ -1,19 +1,22 @@
 import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../firebase'
+import { doc, setDoc } from "firebase/firestore"
+import { db, auth } from '../firebase'
 
 export default function Login() {
+    const navigate = useNavigate()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [validated, setValidated] = useState(false)
 
     async function registrarUsuario(email, password) {
         const infoUser = await createUserWithEmailAndPassword(auth, email, password).then((userF) => {
             return userF
         }) // Registrar usuario y obtener info del mismo
 
-        console.log(infoUser.user.uid)
-        //const docuRef = doc(db, `usuarios/${infoUser.user.uid}`) // Definir documento a la coleccion 'usuarios'
+        //console.log(infoUser.user.uid)
+        const docuRef = doc(db, `usuarios/${infoUser.user.uid}`) // Definir documento a la coleccion 'usuarios'
+        setDoc(docuRef, {correo: email}) // Subir documento
         //setDoc(docuRef, {correo: email, rol: rol}) // Subir documento
     }
 
@@ -23,16 +26,15 @@ export default function Login() {
 
         if (form.checkValidity() === true) {
             registrarUsuario(email, password)
+            navigate('/login')
         } else {
             e.stopPropagation()
         }
-  
-        setValidated(true)
       }
 
     return (
         <div className="container py-3">            
-            <form className='row g-3 needs-validation' validated={validated} onSubmit={handleSubmit}>
+            <form className='row g-3 needs-validation' onSubmit={handleSubmit}>
                 <h1 className="px-0">Registro de Usuario</h1>
                 <div className="mb-3 px-0">
                     <label htmlFor="validationCustom01" className="form-label">Email</label>
@@ -66,7 +68,7 @@ export default function Login() {
 
             </form>
             <p className="mt-3">
-                Ya estas registrado? <a href="/login">Inicia Sesion</a>
+                Ya estas registrado? <a href="/login">Iniciar Sesion</a>
             </p>
         </div>
     )

@@ -1,8 +1,9 @@
 import React from 'react'
+import { signOut } from 'firebase/auth'
+import { auth } from '../firebase'
 
 export default function Navbar(props) {
-    //const { user, admin } = props
-    const user = true
+    const { user } = props
 
     return (
         <header className="p-2 bg-dark bg-gradient">
@@ -35,15 +36,15 @@ export default function Navbar(props) {
                                 <img src="/img/userImage.png" alt="mdo" width={32} height={32} className="rounded-circle" />
                             </div>
                             <ul className="dropdown-menu text-small shadow">
-                                <li><div className="dropdown-item">{user.email}</div></li>
+                                <li><div className="dropdown-item disabled">{user.email.toUpperCase()}</div></li>
                                 {user ? <li><a className="dropdown-item" href="/signup">Registrar Usuario</a></li> : <li></li>}
                                 <li><hr className="dropdown-divider" /></li>
-                                <li><a className="dropdown-item" href="/">Cerrar Sesion</a></li>
+                                <li><a onClick={() => signOut(auth)} className="dropdown-item" href="/">Cerrar Sesion</a></li>
                             </ul>
                         </div>
-                        : 
-                        <a href="/login" className="nav-link px-2 text-white">
-                            <button type="button" className="btn btn-warning me-2">Inicio de Sesion</button>
+                        :
+                        <a href="/login" className="nav-link text-white">
+                            <button type="button" className="btn btn-danger me-2">Iniciar Sesión</button>                        
                         </a>
                         }
                 </div>
