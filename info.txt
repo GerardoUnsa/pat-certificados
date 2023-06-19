@@ -29,7 +29,7 @@ Despliegue:
 GitHub GerardoUNSA:
 -> git init
 -> git add .
--> git commit -m "version 2.4"
+-> git commit -m "version 2.5"
 -> git branch -M main
 -> git remote add origin https://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@github.com/GerardoUnsa/pat-certificados.git
 -> git push -u origin main
