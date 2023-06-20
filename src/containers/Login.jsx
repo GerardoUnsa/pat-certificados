@@ -14,7 +14,13 @@ export default function Login() {
 
         if (form.checkValidity() === true) {
             signInWithEmailAndPassword(auth, email, password)
-            navigate('/')
+            .then(() => {
+                navigate('/')
+            })
+
+            .catch(() => {
+                alert("Credenciales incorrectas !!!")
+            })            
         } else {
             e.stopPropagation()
         }
@@ -28,7 +34,7 @@ export default function Login() {
                 <div className="mb-3 px-0">
                     <label htmlFor="validationCustom01" className="form-label">Email</label>
                     <input 
-                        type="text"
+                        type="email"
                         className="form-control"
                         id="validationCustom01"
                         value={email}
@@ -45,6 +51,7 @@ export default function Login() {
                         id="validationCustom02"
                         value={password}
                         onChange={e => setPassword(e.target.value)}
+                        autoComplete="on"
                         required
                     />
                 </div>

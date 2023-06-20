@@ -10,14 +10,16 @@ export default function Login() {
     const [password, setPassword] = useState('')
 
     async function registrarUsuario(email, password) {
-        const infoUser = await createUserWithEmailAndPassword(auth, email, password).then((userF) => {
-            return userF
-        }) // Registrar usuario y obtener info del mismo
-
-        //console.log(infoUser.user.uid)
-        const docuRef = doc(db, `usuarios/${infoUser.user.uid}`) // Definir documento a la coleccion 'usuarios'
-        setDoc(docuRef, {correo: email}) // Subir documento
-        //setDoc(docuRef, {correo: email, rol: rol}) // Subir documento
+        // Registrar usuario y obtener info del mismo
+        await createUserWithEmailAndPassword(auth, email, password)
+        .then((userF) => {
+            const docuRef = doc(db, `usuarios/${userF.user.uid}`) // Definir documento a la coleccion 'usuarios'
+            setDoc(docuRef, {correo: email, uid: userF.user.uid, admin: true}) // Subir documento
+            navigate('/login')
+        })
+        .catch(() => {
+            alert("Correo con cuenta existente")
+        })
     }
 
     const handleSubmit = (e) => {
@@ -25,8 +27,7 @@ export default function Login() {
         e.preventDefault()
 
         if (form.checkValidity() === true) {
-            registrarUsuario(email, password)
-            navigate('/login')
+            registrarUsuario(email, password)                                  
         } else {
             e.stopPropagation()
         }
@@ -39,7 +40,7 @@ export default function Login() {
                 <div className="mb-3 px-0">
                     <label htmlFor="validationCustom01" className="form-label">Email</label>
                     <input 
-                        type="text"
+                        type="email"
                         className="form-control"
                         id="validationCustom01"
                         value={email}
@@ -56,7 +57,8 @@ export default function Login() {
                         id="validationCustom02"
                         value={password}
                         onChange={e => setPassword(e.target.value)}
-                        required
+                        autoComplete="on"
+                        required                        
                     />
                 </div>
 
