@@ -8,8 +8,9 @@ const HomeCertificados = ({ certificados }) => {
           <div className="col" key={`${value.id}`}>
             <div className="card mb-4 rounded-3 shadow-sm">
               <div className="card-header p-0">
-                <a rel="noreferrer" href={`/manualVirtual/${value.id}`}>
-                  <img src={`https://qrickit.com/api/qr.php?d=<link>&addtext=Zortrax+M300+Dual&txtcolor=000000&fgdcolor=000000&bgdcolor=FFFFFF&qrsize=500&t=p&e=m`} className="card-img-top" alt={index} />
+                {/* <a rel="noreferrer" href={`/certificado/${value.id}`}> */}
+                <a rel="noreferrer" href={value.Url}>
+                  <img src={`https://qrickit.com/api/qr.php?d=${value.Url}&addtext=Zortrax+M300+Dual&txtcolor=000000&fgdcolor=000000&bgdcolor=FFFFFF&qrsize=500&t=p&e=m`} className="card-img-top" alt={index} />
                 </a>                    
               </div>
               <div className="card-body">
@@ -55,7 +56,7 @@ export default function Home() {
         },
         err => {
           if (err !== null) {
-            console.log(err, 'home')
+            //console.log(err, 'home')
             setError(true)
           }
         }

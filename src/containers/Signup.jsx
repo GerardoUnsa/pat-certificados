@@ -10,16 +10,22 @@ export default function Login() {
     const [password, setPassword] = useState('')
 
     async function registrarUsuario(email, password) {
-        // Registrar usuario y obtener info del mismo
-        await createUserWithEmailAndPassword(auth, email, password)
-        .then((userF) => {
-            const docuRef = doc(db, `usuarios/${userF.user.uid}`) // Definir documento a la coleccion 'usuarios'
-            setDoc(docuRef, {correo: email, uid: userF.user.uid, admin: true}) // Subir documento
+        if(auth.currentUser) {
+            // Registrar usuario y obtener info del mismo
+            await createUserWithEmailAndPassword(auth, email, password)
+            .then((userF) => {
+                const docuRef = doc(db, `usuarios/${userF.user.uid}`) // Definir documento a la coleccion 'usuarios'
+                setDoc(docuRef, {correo: email, uid: userF.user.uid}) // Subir documento
+                navigate('/login')
+            })
+            .catch(() => {
+                alert("Correo con cuenta existente")
+            })
+        }
+        else {
             navigate('/login')
-        })
-        .catch(() => {
-            alert("Correo con cuenta existente")
-        })
+            alert("Función de administrador")
+        }
     }
 
     const handleSubmit = (e) => {
