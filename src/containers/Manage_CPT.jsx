@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { CrudCertificadosTable } from "./tables"
+import { CrudCertificadPuestaTierraTable } from "./tables"
 import { db } from '../firebase'
 
 export default function Manage_CPT() {
@@ -68,14 +68,14 @@ export default function Manage_CPT() {
                             <div className="input-group">
                                 <input
                                 type="text"
-                                className="searchBarInput form-control form-control-dark w-100 rounded-0 border-0"
+                                className="searchBarInput form-control form-control-dark w-100 rounded-pill"
                                 value={searchValue}
                                 onChange={(e) => setSearchValue(e.target.value)}
                                 placeholder="Buscar usuario"
                                 />
                             </div>
                         </form>
-                        <CrudCertificadosTable certificados={certificadosFiltrados} />
+                        <CrudCertificadPuestaTierraTable certificados={certificadosFiltrados} />
                     </div>
                 }
                 

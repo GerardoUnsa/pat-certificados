@@ -22,7 +22,7 @@ const CrudCertificadPuestaTierraTable = ({ certificados }) => {
   }
   
   return (
-    <div className="font-weight-light">
+    <div className="pt-3 font-weight-light">
       <table className="table table-striped table-dark">
         
         <tbody>

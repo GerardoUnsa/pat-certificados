@@ -64,14 +64,14 @@ export default function Manage_Certificados() {
                     </div>
                 :
                     <div className="col-md-8">
-                        <form className="searchBar" onSubmit={handleSubmit}>
+                        <form className="row searchBar" onSubmit={handleSubmit}>
                             <div className="input-group">
                                 <input
                                 type="text"
-                                className="searchBarInput form-control form-control-dark w-100 rounded-0 border-0"
+                                className="searchBarInput form-control form-control-dark w-100 rounded-pill"
                                 value={searchValue}
                                 onChange={(e) => setSearchValue(e.target.value)}
-                                placeholder="Buscar usuario"
+                                placeholder="Buscar Certificado"
                                 />
                             </div>
                         </form>
