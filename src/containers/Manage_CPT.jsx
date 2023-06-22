@@ -71,7 +71,7 @@ export default function Manage_CPT() {
                                 className="searchBarInput form-control form-control-dark w-100 rounded-pill"
                                 value={searchValue}
                                 onChange={(e) => setSearchValue(e.target.value)}
-                                placeholder="Buscar usuario"
+                                placeholder="Buscar Certificado"
                                 />
                             </div>
                         </form>
