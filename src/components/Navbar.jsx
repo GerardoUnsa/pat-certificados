@@ -35,6 +35,7 @@ export default function Navbar(props) {
                         <li className="flex-shrink-0 dropdown" style={{cursor: 'pointer'}}>
                             <div className="nav-link px-2 link-danger dropdown-toggle d-block" data-bs-toggle="dropdown" aria-expanded="false">Admin</div>
                             <ul className="dropdown-menu text-small shadow">
+                                <li><a className="dropdown-item" href="/admin/manage/ci">Certificados Iluminacion</a></li>
                                 <li><a className="dropdown-item" href="/admin/manage/certificados">Certificados</a></li>
                                 <li><a className="dropdown-item" href="/admin/manage/cpt">Certificado Puesta Tierra</a></li>
                                 <li><a className="dropdown-item" href="/admin/users">Usuarios</a></li>
